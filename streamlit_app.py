@@ -86,9 +86,9 @@ cnt_table = cur.fetchone()
 if cnt_table[0] == 0 :
     st.title(f':red[There is not "{db_table}" in C Simulation Result DB]')
 else:
-    sql_query_table = f'SELECT id, time, fl, op, mode, mcs, pri, per FROM "{db_table}"'
-    cur = db.execute(sql_query_table) 
-    results = cur.fetchall()
+    #sql_query_table = f'SELECT id, time, fl, op, mode, mcs, pri, per FROM "{db_table}"'
+    #cur = db.execute(sql_query_table) 
+    #results = cur.fetchall()
     st.write(f':red[PER TEST] Selected Parameter : AH_AP1:red[{fl_sel}]\_:red[{op_sel}]\_:red[{mode_sel}]\_MCSxx_:red[{pri_sel}]_LGI_STBCx_DOPx_SMTx_D256')  
     st.write(f':blue[Compare] Selected Parameter : AH_AP1:blue[{comp_sel1}]\_:blue[{comp_sel2}]\_:blue[{comp_sel3}]\_MCSxx_:blue[{comp_sel4}]_LGI_STBCx_DOPx_SMTx_D256') 
     
@@ -188,7 +188,7 @@ else:
             p.plot.triangle(df_comp['SNR'],df_comp['M06'], fill_color='blueviolet', line_color='blueviolet',size=7)
             p.plot.triangle(df_comp['SNR'],df_comp['M07'], fill_color='black',      line_color='black',     size=7)    
                
-        p.legend.location = "top_right"  
+        p.legend.location = "bottom_right"  
         p.legend.title = "MCS"  
         p.yaxis.ticker.num_minor_ticks = 10
         p.ygrid.minor_grid_line_color = "black" 
