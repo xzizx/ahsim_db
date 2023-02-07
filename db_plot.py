@@ -164,7 +164,7 @@ else:
         p.plot.circle(df['SNR'],df['M03'], fill_color='lime',       line_color='lime',      size=7)    
         p.plot.circle(df['SNR'],df['M04'], fill_color='blue',       line_color='blue',      size=7)    
         p.plot.circle(df['SNR'],df['M05'], fill_color='navy',       line_color='navy',      size=7)    
-        p.plot.circle(df['SNR'],df['M06'], fill_color='blueviored', line_color='blueviolet',size=7)    
+        p.plot.circle(df['SNR'],df['M06'], fill_color='blueviolet', line_color='blueviolet',size=7)    
         p.plot.circle(df['SNR'],df['M07'], fill_color='black',      line_color='black',     size=7)       
 
         if results_comp_per :
@@ -185,7 +185,7 @@ else:
             p.plot.triangle(df_comp['SNR'],df_comp['M03'], fill_color='lime',       line_color='lime',      size=7)
             p.plot.triangle(df_comp['SNR'],df_comp['M04'], fill_color='blue',       line_color='blue',      size=7)
             p.plot.triangle(df_comp['SNR'],df_comp['M05'], fill_color='navy',       line_color='navy',      size=7)
-            p.plot.triangle(df_comp['SNR'],df_comp['M06'], fill_color='blueviored', line_color='blueviolet',size=7)
+            p.plot.triangle(df_comp['SNR'],df_comp['M06'], fill_color='blueviolet', line_color='blueviolet',size=7)
             p.plot.triangle(df_comp['SNR'],df_comp['M07'], fill_color='black',      line_color='black',     size=7)    
                
         p.legend.location = "top_right"  
