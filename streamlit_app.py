@@ -30,7 +30,7 @@ with st.sidebar:
     op_sel = st.radio('Operation Type?',('O1', 'O2', 'O4','O8'),index=1,horizontal=True)
     if op_sel == 'O1': 
         mode_sel='1Mx1'        
-        pri_sel='P0'
+        pri_sel='P1'
         st.sidebar.text('Mode Type?')
         st.sidebar.text(mode_sel)
         st.sidebar.text('Primary ?')
@@ -104,7 +104,7 @@ with st.sidebar:
     comp_op  = st.selectbox('Compare Operating', ('O1', 'O2', 'O4', 'O8'),index=1)
     if comp_op == 'O1': 
         comp_mode='1Mx1'        
-        comp_pri='P0'
+        comp_pri='P1'
     elif comp_op == 'O2':
         comp_mode= st.selectbox('Compare Mode', ('1Mx1','1Mx2','2Sx1','2Lx1'),index=3)    
         comp_pri = st.selectbox('Compare Primary', ('P0', 'P1'),index=0)    
