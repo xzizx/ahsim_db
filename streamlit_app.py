@@ -5,8 +5,6 @@ import numpy as np
 import sqlite3
 from   bokeh.plotting import figure, show
 
-
-# 한글 폰트 설정
 plt.rcParams['font.family'] = "Gothic"
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -17,11 +15,11 @@ def connect_db():
 
 with st.sidebar:
     st.sidebar.header('Select Target')
-    table_sel = st.radio('DB Table Seletct?',('AH2', 'AH8_cs156'),index=1,horizontal=True)
-    if table_sel == 'AH2':
-        db_table = "AH2"
-    else :
+    table_sel = st.radio('DB Table Seletct?',('AH8_cs156', 'AH8_cs'),index=0,horizontal=True)
+    if table_sel == 'AH8_cs156':
         db_table = "AH8_cs156"
+    else :
+        db_table = "AH8_cs"
         
     sim_sel = st.radio('Simulation Type?',('FL', 'FX'),index=0,horizontal=True)
     if sim_sel == 'FL':
@@ -121,7 +119,7 @@ st.title(f'"{db_table}" C Simulation Result')
 
 db = connect_db()
 cur = db.cursor()
-sql_cnt_table = f'SELECT COUNT(*) from sqlite_master WHERE type="table" AND name="{db_table}"'
+sql_cnt_table = f'SELECT COUNT(*) FROM sqlite_master WHERE type="table" AND name="{db_table}"'
 cur.execute(sql_cnt_table)
 cnt_table = cur.fetchone()
 if cnt_table[0] == 0 :
