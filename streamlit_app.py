@@ -98,7 +98,9 @@ with st.sidebar:
         elif mode_sel == '8Sx1':
             test_case = test_case+"_OP8_8Sx1"
         else: 
-            test_case = test_case+"_OP8_8Lx1"         
+            test_case = test_case+"_OP8_8Lx1"        
+    
+    pilot_sel = st.radio('Pilot Seletct?',('DOPx', 'DOP1'),index=0,horizontal=True)
      
     comp_sim = st.selectbox('Compare FL/FX', ('FL', 'FX'),index=0)
     comp_op  = st.selectbox('Compare Operating', ('O1', 'O2', 'O4', 'O8'),index=1)
@@ -114,6 +116,7 @@ with st.sidebar:
     else:     
         comp_mode= st.selectbox('Compare Mode', ('1Mx1','1Mx2','2Sx1','2Lx1','1Mx4','2Sx2','2Lx2','4Sx1','4Lx1','1Mx8','2Sx4','2Lx4','8Sx1','8Lx1'),index=12)    
         comp_pri = st.selectbox('Compare Primary', ('P0', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7'),index=0)    
+    comp_pilot   = st.selectbox('Compare Pilot',('DOPx', 'DOP1'),index=0)
 
 st.title(f'"{db_table}" C Simulation Result')
 
@@ -125,14 +128,14 @@ cnt_table = cur.fetchone()
 if cnt_table[0] == 0 :
     st.title(f':red[There is not "{db_table}" in C Simulation Result DB]')
 else:
-    st.write(f':red[PER TEST] Selected Parameter : AH_AP1:red[{sim_sel}]\_:red[{op_sel}]\_:red[{mode_sel}]\_MCSxx_:red[{pri_sel}]_LGI_STBCx_DOPx_SMTx_D256')  
-    st.write(f':blue[Compare] Selected Parameter : AH_AP1:blue[{comp_sim}]\_:blue[{comp_op}]\_:blue[{comp_mode}]\_MCSxx_:blue[{comp_pri}]_LGI_STBCx_DOPx_SMTx_D256') 
+    st.write(f':red[PER TEST] Selected Parameter : AH_AP1:red[{sim_sel}]\_:red[{op_sel}]\_:red[{mode_sel}]\_MCSxx_:red[{pri_sel}]\_LGI_STBCx_:red[{pilot_sel}]\_SMTx_D256')  
+    st.write(f':blue[Compare] Selected Parameter : AH_AP1:blue[{comp_sim}]\_:blue[{comp_op}]\_:blue[{comp_mode}]\_MCSxx_:blue[{comp_pri}]\_LGI_STBCx_:blue[{comp_pilot}]\_SMTx_D256') 
     
-    sql_mcs_per = f'SELECT DISTINCT mcs,per FROM "{db_table}" WHERE fl = "{sim_sel}" AND op = "{op_sel}" AND mode = "{mode_sel}" AND pri = "{pri_sel}" ORDER BY mcs '
+    sql_mcs_per = f'SELECT DISTINCT mcs,per FROM "{db_table}" WHERE fl = "{sim_sel}" AND op = "{op_sel}" AND mode = "{mode_sel}" AND pri = "{pri_sel}" AND pilot ="{pilot_sel}" ORDER BY mcs '
     selected_mcs_per = db.execute(sql_mcs_per)
     results_mcs_per  = selected_mcs_per.fetchall()
     
-    sql_comp_per = f'SELECT DISTINCT mcs,per FROM "{db_table}" WHERE fl = "{comp_sim}" AND op = "{comp_op}" AND mode = "{comp_mode}" AND pri = "{comp_pri}" ORDER BY mcs '
+    sql_comp_per = f'SELECT DISTINCT mcs,per FROM "{db_table}" WHERE fl = "{comp_sim}" AND op = "{comp_op}" AND mode = "{comp_mode}" AND pri = "{comp_pri}" AND pilot ="{comp_pilot}"ORDER BY mcs '
     selected_comp_per = db.execute(sql_comp_per)
     results_comp_per  = selected_comp_per.fetchall()
     
